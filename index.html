@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Abhinand B | Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b0f19;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(11, 15, 25, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #202637;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: auto;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #00d9ff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ddd;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00d9ff;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 25px 50px;
+        }
+
+        .hero-content {
+            max-width: 1100px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .small-text {
+            color: #00d9ff;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 80px);
+            line-height: 1.05;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #00d9ff;
+        }
+
+        .hero h2 {
+            font-size: 25px;
+            color: #b8bdc9;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 600px;
+            color: #9da4b4;
+            font-size: 17px;
+        }
+
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .primary {
+            background: #00d9ff;
+            color: #071018;
+        }
+
+        .primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 217, 255, 0.2);
+        }
+
+        .secondary {
+            border: 1px solid #394154;
+            color: white;
+        }
+
+        .secondary:hover {
+            border-color: #00d9ff;
+            color: #00d9ff;
+        }
+
+        /* PROFILE CARD */
+
+        .profile-card {
+            background: #111827;
+            border: 1px solid #252d3d;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .profile-circle {
+            width: 150px;
+            height: 150px;
+            margin: auto;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d9ff, #2563eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .profile-card h3 {
+            margin-top: 20px;
+            font-size: 28px;
+        }
+
+        .profile-card p {
+            color: #9da4b4;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 100px 25px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+        }
+
+        .section-title span {
+            color: #00d9ff;
+        }
+
+        .section-title p {
+            color: #8992a5;
+            margin-top: 8px;
+        }
+
+        /* ABOUT */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: #111827;
+            border: 1px solid #252d3d;
+            padding: 30px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #00d9ff;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .card p {
+            color: #aeb5c3;
+        }
+
+        /* SKILLS */
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .skill {
+            background: #111827;
+            border: 1px solid #30394b;
+            padding: 14px 25px;
+            border-radius: 30px;
+            color: #dce1ea;
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            background: #00d9ff;
+            color: #071018;
+            border-color: #00d9ff;
+            transform: translateY(-3px);
+        }
+
+        /* EDUCATION */
+
+        .timeline {
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .timeline-item {
+            background: #111827;
+            border-left: 3px solid #00d9ff;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .timeline-item h3 {
+            font-size: 22px;
+        }
+
+        .timeline-item .year {
+            color: #00d9ff;
+            margin: 5px 0;
+        }
+
+        .timeline-item p {
+            color: #9da4b4;
+        }
+
+        /* PROJECT */
+
+        .project-card {
+            max-width: 800px;
+            margin: auto;
+            background: #111827;
+            border: 1px solid #252d3d;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .project-top {
+            height: 180px;
+            background: linear-gradient(135deg, #101827, #172554);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-content h3 {
+            font-size: 27px;
+            margin-bottom: 12px;
+        }
+
+        .project-content p {
+            color: #aeb5c3;
+            margin-bottom: 20px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #202a3b;
+            padding: 7px 14px;
+            border-radius: 20px;
+            color: #00d9ff;
+            font-size: 14px;
+        }
+
+        /* CONTACT */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .contact-card {
+            text-align: center;
+            background: #111827;
+            border: 1px solid #252d3d;
+            border-radius: 15px;
+            padding: 30px 20px;
+        }
+
+        .contact-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .contact-card a,
+        .contact-card p {
+            color: #9da4b4;
+            text-decoration: none;
+            word-break: break-word;
+        }
+
+        .contact-card a:hover {
+            color: #00d9ff;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid #202637;
+            color: #7f8798;
+        }
+
+        footer span {
+            color: #00d9ff;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero p {
+                margin: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+                max-width: 400px;
+                margin: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav>
+        <div class="nav-container">
+
+            <div class="logo">
+                Abhinand<span>.</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div>
+
+                <div class="small-text">
+                    Hello, I'm
+                </div>
+
+                <h1>
+                    Abhinand <span>B</span>
+                </h1>
+
+                <h2>
+                    BCA Student & Aspiring Developer
+                </h2>
+
+                <p>
+                    A motivated BCA graduate with good communication,
+                    problem-solving and computer skills. I am passionate
+                    about learning new technologies, building projects
+                    and starting my professional career.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="#projects" class="btn primary">
+                        View My Work
+                    </a>
+
+                    <a href="#contact" class="btn secondary">
+                        Contact Me
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-card">
+
+                <div class="profile-circle">
+                    AB
+                </div>
+
+                <h3>Abhinand B</h3>
+
+                <p>
+                    BCA • 2023 - 2026
+                </p>
+
+                <p style="margin-top:10px;">
+                    Kerala, India
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>About <span>Me</span></h2>
+
+                <p>Get to know me</p>
+
+            </div>
+
+
+            <div class="about-grid">
+
+                <div class="card">
+
+                    <h3>Who I Am</h3>
+
+                    <p>
+                        I am a BCA student with good communication and
+                        problem-solving skills. I am a quick learner with
+                        a positive attitude and I am eager to grow,
+                        gain professional experience and contribute
+                        to a good company.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>Career Goal</h3>
+
+                    <p>
+                        I am looking to begin my professional career where
+                        I can interact with people, solve problems,
+                        develop my technical skills and continuously
+                        improve my professional abilities.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SKILLS -->
+
+    <section id="skills">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>My <span>Skills</span></h2>
+
+                <p>Technologies and abilities</p>
+
+            </div>
+
+
+            <div class="skills">
+
+                <div class="skill">C</div>
+                <div class="skill">C++</div>
+                <div class="skill">Java</div>
+                <div class="skill">Basic Computer Knowledge</div>
+                <div class="skill">Data Entry</div>
+                <div class="skill">Problem Solving</div>
+                <div class="skill">Customer Handling</div>
+                <div class="skill">Communication</div>
+                <div class="skill">Teamwork</div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EDUCATION -->
+
+    <section id="education">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>My <span>Education</span></h2>
+
+                <p>Academic background</p>
+
+            </div>
+
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+
+                    <h3>
+                        Bachelor of Computer Applications (BCA)
+                    </h3>
+
+                    <div class="year">
+                        2023 - 2026
+                    </div>
+
+                    <p>
+                        Mar Augusthinose College, Ramapuram
+                    </p>
+
+                    <p>
+                        CGPA: 6.5
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+
+    <section id="projects">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Featured <span>Project</span></h2>
+
+                <p>Some of my academic work</p>
+
+            </div>
+
+
+            <div class="project-card">
+
+                <div class="project-top">
+                    🚗
+                </div>
+
+                <div class="project-content">
+
+                    <h3>
+                        Namma Ghaadi – Car Website
+                    </h3>
+
+                    <p>
+                        A car-focused website developed to display
+                        vehicle details, models and specifications.
+                        The project provided hands-on experience
+                        in web development and application workflow.
+                    </p>
+
+                    <div class="tags">
+
+                        <div class="tag">Web Development</div>
+                        <div class="tag">Car Website</div>
+                        <div class="tag">UI Design</div>
+                        <div class="tag">Teamwork</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Contact <span>Me</span></h2>
+
+                <p>Let's connect</p>
+
+            </div>
+
+
+            <div class="contact-grid">
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        📞
+                    </div>
+
+                    <h3>Phone</h3>
+
+                    <a href="tel:9656235495">
+                        9656235495
+                    </a>
+
+                </div>
+
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        ✉️
+                    </div>
+
+                    <h3>Email</h3>
+
+                    <a href="mailto:abhinandb914@gmail.com">
+                        abhinandb914@gmail.com
+                    </a>
+
+                </div>
+
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        🔗
+                    </div>
+
+                    <h3>LinkedIn</h3>
+
+                    <a
+                        href="http://www.linkedin.com/in/abhinand-binu-7b1495387"
+                        target="_blank">
+                        View Profile
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 <span>Abhinand B</span>.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        // Simple navbar effect while scrolling
+
+        window.addEventListener("scroll", function () {
+
+            const nav = document.querySelector("nav");
+
+            if (window.scrollY > 50) {
+                nav.style.background = "rgba(11, 15, 25, 0.97)";
+            } else {
+                nav.style.background = "rgba(11, 15, 25, 0.9)";
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
