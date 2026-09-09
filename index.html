@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Abhinand B | Portfolio</title>
+    <title>Abhinand B | MERN Stack Developer</title>
 
     <style>
         * {
@@ -246,6 +246,23 @@
 
         /* SKILLS */
 
+        .skill-group {
+            margin-bottom: 35px;
+        }
+
+        .skill-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .skill-group h4 {
+            color: #8992a5;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
         .skills {
             display: flex;
             flex-wrap: wrap;
@@ -297,11 +314,17 @@
             color: #9da4b4;
         }
 
-        /* PROJECT */
+        /* PROJECTS */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1000px;
+            margin: auto;
+        }
 
         .project-card {
-            max-width: 800px;
-            margin: auto;
             background: #111827;
             border: 1px solid #252d3d;
             border-radius: 18px;
@@ -309,26 +332,31 @@
         }
 
         .project-top {
-            height: 180px;
+            height: 140px;
             background: linear-gradient(135deg, #101827, #172554);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 55px;
+            font-size: 50px;
         }
 
         .project-content {
-            padding: 30px;
+            padding: 28px;
         }
 
         .project-content h3 {
-            font-size: 27px;
+            font-size: 22px;
             margin-bottom: 12px;
         }
 
-        .project-content p {
+        .project-content ul {
             color: #aeb5c3;
-            margin-bottom: 20px;
+            margin: 0 0 20px 18px;
+            font-size: 14.5px;
+        }
+
+        .project-content ul li {
+            margin-bottom: 8px;
         }
 
         .tags {
@@ -342,14 +370,14 @@
             padding: 7px 14px;
             border-radius: 20px;
             color: #00d9ff;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         /* CONTACT */
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
 
@@ -375,6 +403,7 @@
             color: #9da4b4;
             text-decoration: none;
             word-break: break-word;
+            font-size: 14.5px;
         }
 
         .contact-card a:hover {
@@ -419,8 +448,12 @@
                 grid-template-columns: 1fr;
             }
 
-            .contact-grid {
+            .projects-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
             .profile-card {
@@ -472,14 +505,15 @@
                 </h1>
 
                 <h2>
-                    BCA Student & Aspiring Developer
+                    MERN Stack Developer
                 </h2>
 
                 <p>
-                    A motivated BCA graduate with good communication,
-                    problem-solving and computer skills. I am passionate
-                    about learning new technologies, building projects
-                    and starting my professional career.
+                    BCA graduate and aspiring MERN Stack Developer, currently
+                    developing practical skills in MongoDB, Express.js, React.js
+                    and Node.js. Familiar with frontend and backend development,
+                    database concepts, RESTful APIs, and Git/GitHub — eager to
+                    build responsive, scalable and user-focused web applications.
                 </p>
 
                 <div class="buttons">
@@ -510,7 +544,7 @@
                 </p>
 
                 <p style="margin-top:10px;">
-                    Kerala, India
+                    Thodupuzha, Idukki, Kerala
                 </p>
 
             </div>
@@ -542,11 +576,12 @@
                     <h3>Who I Am</h3>
 
                     <p>
-                        I am a BCA student with good communication and
-                        problem-solving skills. I am a quick learner with
-                        a positive attitude and I am eager to grow,
-                        gain professional experience and contribute
-                        to a good company.
+                        I'm a BCA graduate with a strong foundation in
+                        programming, web technologies and database concepts.
+                        I'm building hands-on experience across the MERN
+                        stack — MongoDB, Express.js, React.js and Node.js —
+                        alongside modern JavaScript and RESTful APIs, and I
+                        enjoy solving problems with clear, logical thinking.
                     </p>
 
                 </div>
@@ -557,10 +592,11 @@
                     <h3>Career Goal</h3>
 
                     <p>
-                        I am looking to begin my professional career where
-                        I can interact with people, solve problems,
-                        develop my technical skills and continuously
-                        improve my professional abilities.
+                        I'm looking to apply my MERN stack skills to build
+                        responsive, scalable and user-focused web
+                        applications as part of a professional team, while
+                        continuing to grow as a full-stack developer through
+                        real-world projects and mentorship.
                     </p>
 
                 </div>
@@ -586,19 +622,39 @@
 
             </div>
 
+            <div class="skill-group">
+                <h4>MERN Stack</h4>
+                <div class="skills">
+                    <div class="skill">MongoDB</div>
+                    <div class="skill">Express.js</div>
+                    <div class="skill">React.js</div>
+                    <div class="skill">Node.js</div>
+                </div>
+            </div>
 
-            <div class="skills">
+            <div class="skill-group">
+                <h4>Programming & Web</h4>
+                <div class="skills">
+                    <div class="skill">JavaScript</div>
+                    <div class="skill">Java</div>
+                    <div class="skill">C</div>
+                    <div class="skill">C++</div>
+                    <div class="skill">HTML5</div>
+                    <div class="skill">ES6</div>
+                </div>
+            </div>
 
-                <div class="skill">C</div>
-                <div class="skill">C++</div>
-                <div class="skill">Java</div>
-                <div class="skill">Basic Computer Knowledge</div>
-                <div class="skill">Data Entry</div>
-                <div class="skill">Problem Solving</div>
-                <div class="skill">Customer Handling</div>
-                <div class="skill">Communication</div>
-                <div class="skill">Teamwork</div>
-
+            <div class="skill-group">
+                <h4>Tools & Core Strengths</h4>
+                <div class="skills">
+                    <div class="skill">Git</div>
+                    <div class="skill">GitHub</div>
+                    <div class="skill">Problem Solving</div>
+                    <div class="skill">Logical Thinking</div>
+                    <div class="skill">Communication</div>
+                    <div class="skill">Teamwork</div>
+                    <div class="skill">Quick Learning</div>
+                </div>
             </div>
 
         </div>
@@ -643,6 +699,24 @@
 
                 </div>
 
+                <div class="timeline-item">
+
+                    <h3>
+                        MERN Stack Development
+                    </h3>
+
+                    <div class="year">
+                        2026 · Professional Development Program
+                    </div>
+
+                    <p>
+                        Hands-on training in MongoDB, Express.js, React.js,
+                        Node.js, HTML, CSS, JavaScript, REST API integration,
+                        database management, and Git/GitHub.
+                    </p>
+
+                </div>
+
             </div>
 
         </div>
@@ -658,38 +732,70 @@
 
             <div class="section-title">
 
-                <h2>Featured <span>Project</span></h2>
+                <h2>Featured <span>Projects</span></h2>
 
                 <p>Some of my academic work</p>
 
             </div>
 
 
-            <div class="project-card">
+            <div class="projects-grid">
 
-                <div class="project-top">
-                    🚗
+                <div class="project-card">
+
+                    <div class="project-top">
+                        💼
+                    </div>
+
+                    <div class="project-content">
+
+                        <h3>
+                            Online Job Portal
+                        </h3>
+
+                        <ul>
+                            <li>Centralized recruitment platform connecting Admin, Job Seekers and Employers</li>
+                            <li>User and company registration with login authentication and role-based access control</li>
+                            <li>Employers post vacancies and manage applications; job seekers search and apply for jobs</li>
+                            <li>Database structures designed with Django ORM and SQLite</li>
+                            <li>Tested registration, login, job posting, application and validation flows</li>
+                        </ul>
+
+                        <div class="tags">
+                            <div class="tag">Python</div>
+                            <div class="tag">Django</div>
+                            <div class="tag">HTML5</div>
+                            <div class="tag">CSS3</div>
+                            <div class="tag">JavaScript</div>
+                            <div class="tag">SQLite</div>
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="project-content">
+                <div class="project-card">
 
-                    <h3>
-                        Namma Ghaadi – Car Website
-                    </h3>
+                    <div class="project-top">
+                        🚗
+                    </div>
 
-                    <p>
-                        A car-focused website developed to display
-                        vehicle details, models and specifications.
-                        The project provided hands-on experience
-                        in web development and application workflow.
-                    </p>
+                    <div class="project-content">
 
-                    <div class="tags">
+                        <h3>
+                            Namma Ghaadi – Car Website
+                        </h3>
 
-                        <div class="tag">Web Development</div>
-                        <div class="tag">Car Website</div>
-                        <div class="tag">UI Design</div>
-                        <div class="tag">Teamwork</div>
+                        <ul>
+                            <li>Car-focused website presenting vehicle details, models and specifications</li>
+                            <li>Structured, user-friendly interface built from core web development concepts</li>
+                        </ul>
+
+                        <div class="tags">
+                            <div class="tag">HTML</div>
+                            <div class="tag">CSS</div>
+                            <div class="tag">JavaScript</div>
+                        </div>
 
                     </div>
 
@@ -727,7 +833,7 @@
 
                     <h3>Phone</h3>
 
-                    <a href="tel:9656235495">
+                    <a href="tel:+919656235495">
                         9656235495
                     </a>
 
@@ -757,10 +863,26 @@
 
                     <h3>LinkedIn</h3>
 
-                    <a
-                        href="http://www.linkedin.com/in/abhinand-binu-7b1495387"
+                    
+                        href="https://www.linkedin.com/in/abhinand-binu-7b1495387"
                         target="_blank">
                         View Profile
+                    </a>
+
+                </div>
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        💻
+                    </div>
+
+                    <h3>GitHub</h3>
+
+                    
+                        href="https://github.com/Abhinand-B"
+                        target="_blank">
+                        Abhinand-B
                     </a>
 
                 </div>
