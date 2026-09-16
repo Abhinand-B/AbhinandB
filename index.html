@@ -1,928 +1,1148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Abhinand B | MERN Stack Developer</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #0b0f19;
-            color: #ffffff;
-            line-height: 1.6;
-        }
-
-        /* NAVBAR */
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(11, 15, 25, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #202637;
-        }
-
-        .nav-container {
-            max-width: 1100px;
-            margin: auto;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 25px;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .logo span {
-            color: #00d9ff;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #ddd;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #00d9ff;
-        }
-
-        /* HERO */
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 25px 50px;
-        }
-
-        .hero-content {
-            max-width: 1100px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .small-text {
-            color: #00d9ff;
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .hero h1 {
-            font-size: clamp(45px, 7vw, 80px);
-            line-height: 1.05;
-            margin-bottom: 15px;
-        }
-
-        .hero h1 span {
-            color: #00d9ff;
-        }
-
-        .hero h2 {
-            font-size: 25px;
-            color: #b8bdc9;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            max-width: 600px;
-            color: #9da4b4;
-            font-size: 17px;
-        }
-
-        .buttons {
-            margin-top: 30px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 13px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-            display: inline-block;
-        }
-
-        .primary {
-            background: #00d9ff;
-            color: #071018;
-        }
-
-        .primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 217, 255, 0.2);
-        }
-
-        .secondary {
-            border: 1px solid #394154;
-            color: white;
-        }
-
-        .secondary:hover {
-            border-color: #00d9ff;
-            color: #00d9ff;
-        }
-
-        /* PROFILE CARD */
-
-        .profile-card {
-            background: #111827;
-            border: 1px solid #252d3d;
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .profile-circle {
-            width: 150px;
-            height: 150px;
-            margin: auto;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00d9ff, #2563eb);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 55px;
-            font-weight: bold;
-            color: white;
-        }
-
-        .profile-card h3 {
-            margin-top: 20px;
-            font-size: 28px;
-        }
-
-        .profile-card p {
-            color: #9da4b4;
-        }
-
-        /* SECTIONS */
-
-        section {
-            padding: 100px 25px;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 55px;
-        }
-
-        .section-title h2 {
-            font-size: 40px;
-        }
-
-        .section-title span {
-            color: #00d9ff;
-        }
-
-        .section-title p {
-            color: #8992a5;
-            margin-top: 8px;
-        }
-
-        /* ABOUT */
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .card {
-            background: #111827;
-            border: 1px solid #252d3d;
-            padding: 30px;
-            border-radius: 15px;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #00d9ff;
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-            font-size: 22px;
-        }
-
-        .card p {
-            color: #aeb5c3;
-        }
-
-        /* SKILLS */
-
-        .skill-group {
-            margin-bottom: 35px;
-        }
-
-        .skill-group:last-child {
-            margin-bottom: 0;
-        }
-
-        .skill-group h4 {
-            color: #8992a5;
-            font-size: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .skill {
-            background: #111827;
-            border: 1px solid #30394b;
-            padding: 14px 25px;
-            border-radius: 30px;
-            color: #dce1ea;
-            transition: 0.3s;
-        }
-
-        .skill:hover {
-            background: #00d9ff;
-            color: #071018;
-            border-color: #00d9ff;
-            transform: translateY(-3px);
-        }
-
-        /* EDUCATION */
-
-        .timeline {
-            max-width: 750px;
-            margin: auto;
-        }
-
-        .timeline-item {
-            background: #111827;
-            border-left: 3px solid #00d9ff;
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 0 12px 12px 0;
-        }
-
-        .timeline-item h3 {
-            font-size: 22px;
-        }
-
-        .timeline-item .year {
-            color: #00d9ff;
-            margin: 5px 0;
-        }
-
-        .timeline-item p {
-            color: #9da4b4;
-        }
-
-        /* PROJECTS */
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        .project-card {
-            background: #111827;
-            border: 1px solid #252d3d;
-            border-radius: 18px;
-            overflow: hidden;
-        }
-
-        .project-top {
-            height: 140px;
-            background: linear-gradient(135deg, #101827, #172554);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 50px;
-        }
-
-        .project-content {
-            padding: 28px;
-        }
-
-        .project-content h3 {
-            font-size: 22px;
-            margin-bottom: 12px;
-        }
-
-        .project-content ul {
-            color: #aeb5c3;
-            margin: 0 0 20px 18px;
-            font-size: 14.5px;
-        }
-
-        .project-content ul li {
-            margin-bottom: 8px;
-        }
-
-        .tags {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: #202a3b;
-            padding: 7px 14px;
-            border-radius: 20px;
-            color: #00d9ff;
-            font-size: 13px;
-        }
-
-        /* CONTACT */
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .contact-card {
-            text-align: center;
-            background: #111827;
-            border: 1px solid #252d3d;
-            border-radius: 15px;
-            padding: 30px 20px;
-        }
-
-        .contact-icon {
-            font-size: 30px;
-            margin-bottom: 10px;
-        }
-
-        .contact-card h3 {
-            margin-bottom: 8px;
-        }
-
-        .contact-card a,
-        .contact-card p {
-            color: #9da4b4;
-            text-decoration: none;
-            word-break: break-word;
-            font-size: 14.5px;
-        }
-
-        .contact-card a:hover {
-            color: #00d9ff;
-        }
-
-        /* FOOTER */
-
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            border-top: 1px solid #202637;
-            color: #7f8798;
-        }
-
-        footer span {
-            color: #00d9ff;
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 800px) {
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero p {
-                margin: auto;
-            }
-
-            .buttons {
-                justify-content: center;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .profile-card {
-                max-width: 400px;
-                margin: auto;
-            }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Abhinand B — Full-stack developer</title>
+<meta name="description" content="Abhinand B — MERN stack developer from Idukki, Kerala. Building web apps with React, Node, Express and MongoDB, and learning to build with AI models." />
+<meta name="theme-color" content="#0A0912" />
+
+<meta property="og:title" content="Abhinand B — Full-stack developer" />
+<meta property="og:description" content="MERN stack developer from Idukki, Kerala. React, Node, Express, MongoDB — and building with AI models." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   1. REGISTERED CUSTOM PROPERTIES  (CSS Houdini @property)
+   These are typed, so the browser can animate them smoothly.
+   --mix drives the blend between the two brand colours, so every
+   accent on the page moves together in one slow, shared rhythm.
+   ═══════════════════════════════════════════════════════════════ */
+@property --mix {
+  syntax: '<percentage>';
+  inherits: true;
+  initial-value: 0%;
+}
+@property --glow {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   2. TOKENS
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --ink:      #0A0912;
+  --ink-soft: #0F0D1B;
+  --panel:    #141223;
+  --line:     #262238;
+  --text:     #EDEAF6;
+  --dim:      #948DB2;
+
+  /* two brand colours, both deep and saturated — no pastels */
+  --c1: #7A46FF;   /* deep violet */
+  --c2: #12B0A3;   /* deep teal   */
+
+  /* the live accent slides between them, never leaving the pair */
+  --accent:   color-mix(in oklab, var(--c1), var(--c2) var(--mix));
+  --accent-2: color-mix(in oklab, var(--c2), var(--c1) var(--mix));
+  --accent-3: var(--c2);
+  --accent-ink: #07060E;
+
+  --measure: 62ch;
+  --rail: 264px;
+  --gutter: clamp(20px, 5vw, 64px);
+
+  --step--1: clamp(.78rem, .76rem + .1vw, .84rem);
+  --step-0:  clamp(1rem, .96rem + .2vw, 1.08rem);
+  --step-1:  clamp(1.3rem, 1.2rem + .5vw, 1.6rem);
+  --step-2:  clamp(1.7rem, 1.4rem + 1.4vw, 2.6rem);
+  --step-3:  clamp(2.6rem, 1.9rem + 3.4vw, 5.4rem);
+  --step-4:  clamp(3.4rem, 1.8rem + 7.4vw, 9rem);
+
+  --ease: cubic-bezier(.22, 1, .36, 1);
+
+  color-scheme: dark;
+}
+
+/* The master blend. One very slow pass between the two colours and
+   back, eased at both ends so there is no visible turnaround. */
+@keyframes blend {
+  0%, 100% { --mix: 0%; }
+  50%      { --mix: 100%; }
+}
+
+html {
+  animation: blend 30s cubic-bezier(.45, 0, .55, 1) infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   3. RESET + BASE
+   ═══════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img, canvas { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: var(--step--1);
+  letter-spacing: -.01em;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   4. THE CYCLING TYPE
+   Each line gets its own delay, so the colour travels down the
+   page line by line instead of all flashing at once.
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes drift { to { background-position: -200% 0; } }
+
+.cycle {
+  font-family: 'Bricolage Grotesque', 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-optical-sizing: auto;
+  letter-spacing: -.04em;
+
+  /* the same two colours, repeated so the loop never seams */
+  background-image: linear-gradient(
+    100deg,
+    var(--c1) 0%, var(--c2) 25%, var(--c1) 50%, var(--c2) 75%, var(--c1) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  animation: drift 26s linear infinite;
+
+  /* clipped backgrounds cut descenders without a little breathing room */
+  padding-bottom: .09em;
+}
+/* negative delays put each line at a different point in the same
+   slow loop, so the page is never one flat colour */
+.cycle.d1 { animation-delay: -5s;  }
+.cycle.d2 { animation-delay: -10s; }
+.cycle.d3 { animation-delay: -15s; }
+.cycle.d4 { animation-delay: -20s; }
+.cycle.d5 { animation-delay: -23s; }
+
+/* ═══════════════════════════════════════════════════════════════
+   5. LAYOUT SHELL — fixed rail on the left, content on the right
+   ═══════════════════════════════════════════════════════════════ */
+.shell {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+}
+
+.rail {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  padding: var(--gutter) 0 var(--gutter) var(--gutter);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--line);
+  z-index: 20;
+}
+
+.rail__mark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .5rem;
+  font-weight: 700;
+  font-size: var(--step-1);
+  letter-spacing: -.03em;
+}
+.rail__dot {
+  width: .5rem; height: .5rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 14px var(--accent);
+}
+.rail__role {
+  color: var(--dim);
+  margin-top: .35rem;
+  max-width: 18ch;
+}
+
+.nav { display: flex; flex-direction: column; gap: .1rem; margin-right: var(--gutter); }
+.nav a {
+  position: relative;
+  padding: .4rem 0 .4rem 1.6rem;
+  color: var(--dim);
+  transition: color .3s var(--ease), padding-left .3s var(--ease);
+}
+.nav a::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  width: .85rem; height: 1px;
+  background: var(--line);
+  transform: translateY(-50%) scaleX(.45);
+  transform-origin: left;
+  transition: transform .35s var(--ease), background .35s var(--ease);
+}
+.nav a:hover, .nav a:focus-visible, .nav a[aria-current="true"] { color: var(--text); }
+.nav a:hover::before,
+.nav a[aria-current="true"]::before { transform: translateY(-50%) scaleX(1); background: var(--accent); }
+
+.rail__foot { color: var(--dim); display: flex; flex-direction: column; gap: .3rem; }
+.rail__foot a { transition: color .25s; }
+.rail__foot a:hover { color: var(--accent); }
+
+.main { min-width: 0; }
+
+section[id] { scroll-margin-top: 2rem; }
+
+.band {
+  padding: clamp(72px, 11vh, 140px) var(--gutter);
+  border-bottom: 1px solid var(--line);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   6. HERO — the one loud moment on the page
+   ═══════════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: grid;
+  align-content: center;
+  padding: 0 var(--gutter);
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+#net {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .62;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero::after {
+  /* keeps the type legible over the network */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 75% at 12% 50%, var(--ink) 20%, transparent 74%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 3;
+  max-width: min(920px, 100%);
+}
+
+.hero__kicker {
+  color: var(--dim);
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-bottom: 1.6rem;
+}
+.hero__pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent-2);
+  animation: pulse 2.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent-2) 60%, transparent); }
+  50%      { opacity: .5; box-shadow: 0 0 0 7px transparent; }
+}
+
+.hero h1 {
+  /* sized off the viewport so 'Abhinand' always fits on one line */
+  font-size: clamp(2.9rem, 11.4vw, 8.4rem);
+  line-height: .92;
+  font-weight: 800;
+  overflow-wrap: break-word;
+}
+.hero h1 span { display: block; width: fit-content; max-width: 100%; }
+
+.hero__lede {
+  margin-top: 1.8rem;
+  max-width: 46ch;
+  color: var(--dim);
+  font-size: var(--step-1);
+  line-height: 1.45;
+  letter-spacing: -.01em;
+}
+.hero__lede b { color: var(--text); font-weight: 500; }
+
+.hero__actions { margin-top: 2.4rem; display: flex; flex-wrap: wrap; gap: .8rem; }
+
+/* buttons */
+.btn {
+  --glow: 0%;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .82rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  isolation: isolate;
+  transition: border-color .3s var(--ease), transform .3s var(--ease);
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg, var(--accent), var(--accent-2));
+  clip-path: inset(0 calc(100% - var(--glow)) 0 0);
+  transition: --glow .45s var(--ease);
+}
+.btn:hover, .btn:focus-visible { --glow: 100%; border-color: transparent; color: var(--accent-ink); }
+.btn:active { transform: translateY(1px); }
+
+.btn--solid {
+  border-color: transparent;
+  background: linear-gradient(100deg, var(--accent), var(--accent-2));
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+.btn--solid::before { background: var(--ink); }
+.btn--solid:hover, .btn--solid:focus-visible { color: var(--text); }
+
+.hero__scroll {
+  position: absolute;
+  bottom: clamp(20px, 4vh, 40px);
+  left: var(--gutter);
+  z-index: 3;
+  color: var(--dim);
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.hero__scroll i {
+  width: 34px; height: 1px; background: var(--line);
+  position: relative; overflow: hidden;
+}
+.hero__scroll i::after {
+  content: ""; position: absolute; inset: 0;
+  background: var(--accent);
+  animation: trace 2.4s var(--ease) infinite;
+}
+@keyframes trace {
+  0%   { transform: translateX(-100%); }
+  60%, 100% { transform: translateX(100%); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   7. SECTION HEADS
+   ═══════════════════════════════════════════════════════════════ */
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: clamp(30px, 5vh, 56px);
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.head h2 {
+  font-size: var(--step-2);
+  letter-spacing: -.04em;
+  font-weight: 600;
+  line-height: 1.05;
+}
+.head .mono { color: var(--dim); margin-left: auto; }
+
+/* ═══════════════════════════════════════════════════════════════
+   8. ABOUT
+   ═══════════════════════════════════════════════════════════════ */
+.about { display: grid; gap: clamp(28px, 5vw, 72px); grid-template-columns: 1.25fr .75fr; align-items: start; }
+.about p + p { margin-top: 1.1rem; }
+.about p { max-width: var(--measure); color: #C9C3E0; }
+.about strong { color: var(--text); font-weight: 500; }
+
+.facts { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.fact { background: var(--ink-soft); padding: 1.1rem 1.25rem; display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
+.fact dt { color: var(--dim); }
+.fact dd { text-align: right; }
+
+/* ═══════════════════════════════════════════════════════════════
+   9. STACK — grid of capability groups + running marquee
+   ═══════════════════════════════════════════════════════════════ */
+.stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.group { background: var(--ink-soft); padding: 1.6rem 1.5rem 1.8rem; transition: background .4s var(--ease); }
+.group:hover { background: var(--panel); }
+.group h3 { font-size: var(--step-0); font-weight: 600; margin-bottom: 1rem; letter-spacing: -.02em; }
+.group ul { list-style: none; display: flex; flex-wrap: wrap; gap: .45rem; }
+.group li {
+  padding: .3rem .7rem;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: #BEB7D8;
+  font-size: var(--step--1);
+  font-family: 'JetBrains Mono', monospace;
+  transition: border-color .3s, color .3s, transform .3s var(--ease);
+}
+.group li:hover { border-color: var(--accent); color: var(--text); transform: translateY(-2px); }
+.group[data-learning] li { border-style: dashed; }
+.group__note { color: var(--dim); font-size: var(--step--1); margin-top: 1rem; }
+
+.marquee {
+  margin-top: 2.5rem;
+  border-block: 1px solid var(--line);
+  padding: .9rem 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee__track { display: flex; gap: 2.5rem; width: max-content; animation: slide 34s linear infinite; }
+.marquee span { color: var(--dim); white-space: nowrap; }
+.marquee span::before { content: "◆"; color: var(--accent); margin-right: 2.5rem; font-size: .6em; vertical-align: middle; }
+@keyframes slide { to { transform: translateX(-50%); } }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+
+/* ═══════════════════════════════════════════════════════════════
+   10. WORK
+   ═══════════════════════════════════════════════════════════════ */
+.work { display: grid; gap: 1.1rem; }
+
+.project {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .85fr);
+  gap: clamp(20px, 4vw, 56px);
+  padding: clamp(24px, 3.4vw, 42px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background:
+    radial-gradient(90% 130% at 100% 0%, color-mix(in oklab, var(--accent) 9%, transparent), transparent 62%),
+    var(--ink-soft);
+  transition: border-color .45s var(--ease), transform .45s var(--ease);
+}
+.project:hover { border-color: color-mix(in oklab, var(--accent) 55%, var(--line)); transform: translateY(-3px); }
+
+.project h3 { font-size: var(--step-1); letter-spacing: -.03em; font-weight: 600; }
+.project__meta { color: var(--dim); margin: .4rem 0 1.1rem; }
+.project p { color: #C4BEDC; max-width: 52ch; }
+.project ul { list-style: none; margin-top: 1rem; display: grid; gap: .55rem; }
+.project li { position: relative; padding-left: 1.3rem; color: #C4BEDC; }
+.project li::before {
+  content: "";
+  position: absolute; left: 0; top: .68em;
+  width: .55rem; height: 1px; background: var(--accent);
+}
+.project__side { display: flex; flex-direction: column; justify-content: space-between; gap: 1.4rem; }
+.project__tags { display: flex; flex-wrap: wrap; gap: .4rem; align-content: flex-start; }
+.project__tags span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--step--1);
+  color: var(--dim);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: .25rem .6rem;
+}
+.project__link { color: var(--accent); align-self: flex-start; border-bottom: 1px solid transparent; transition: border-color .3s; }
+.project__link:hover { border-color: currentColor; }
+
+/* ═══════════════════════════════════════════════════════════════
+   11. TIMELINE — a real sequence, so it is numbered
+   ═══════════════════════════════════════════════════════════════ */
+.timeline { position: relative; display: grid; gap: 2.4rem; padding-left: 2.2rem; counter-reset: step; }
+.timeline::before {
+  content: ""; position: absolute; left: .42rem; top: .5rem; bottom: .5rem;
+  width: 1px; background: linear-gradient(var(--accent), var(--accent-2), transparent);
+}
+.entry { position: relative; counter-increment: step; }
+.entry::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute; left: -2.2rem; top: 0;
+  width: 1rem; height: 1rem;
+  display: grid; place-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .58rem;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: 50%;
+}
+.entry h3 { font-size: var(--step-1); letter-spacing: -.03em; font-weight: 600; }
+.entry__org { color: var(--dim); margin: .25rem 0 1rem; }
+.entry ul { list-style: none; display: grid; gap: .5rem; max-width: var(--measure); }
+.entry li { color: #C4BEDC; position: relative; padding-left: 1.2rem; }
+.entry li::before { content: "→"; position: absolute; left: 0; color: var(--accent-2); }
+
+/* ═══════════════════════════════════════════════════════════════
+   12. ASK PANEL — local, keyword-scored answers about this resume
+   ═══════════════════════════════════════════════════════════════ */
+.ask {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(180deg, var(--panel), var(--ink-soft));
+  padding: clamp(22px, 3vw, 38px);
+  max-width: 780px;
+}
+.ask__log {
+  min-height: 132px;
+  display: grid;
+  gap: .9rem;
+  align-content: start;
+  margin-bottom: 1.2rem;
+  max-height: 340px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+.msg { max-width: 92%; padding: .75rem 1rem; border-radius: 13px; line-height: 1.55; }
+.msg--bot { background: var(--ink); border: 1px solid var(--line); justify-self: start; border-bottom-left-radius: 4px; }
+.msg--me  { background: linear-gradient(100deg, var(--accent), var(--accent-2)); color: var(--accent-ink); justify-self: end; border-bottom-right-radius: 4px; font-weight: 500; }
+.msg--bot b { color: var(--accent); font-weight: 500; }
+
+.ask__form { display: flex; gap: .6rem; }
+.ask__form input {
+  flex: 1;
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .8rem 1.2rem;
+  color: var(--text);
+  font: inherit;
+  transition: border-color .3s;
+}
+.ask__form input::placeholder { color: #6E6791; }
+.ask__form input:focus { outline: none; border-color: var(--accent); }
+.ask__form button { padding: .8rem 1.3rem; border-radius: 999px; background: var(--text); color: var(--ink); font-weight: 600; transition: opacity .25s; }
+.ask__form button:hover { opacity: .85; }
+
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--step--1);
+  color: var(--dim);
+  border: 1px dashed var(--line);
+  border-radius: 999px;
+  padding: .35rem .8rem;
+  transition: color .25s, border-color .25s;
+}
+.chip:hover { color: var(--text); border-color: var(--accent); }
+
+.ask__note { color: var(--dim); font-size: var(--step--1); margin-top: 1.2rem; max-width: 60ch; }
+
+/* ═══════════════════════════════════════════════════════════════
+   13. CONTACT
+   ═══════════════════════════════════════════════════════════════ */
+.contact { border-bottom: 0; }
+.contact h2 { font-size: var(--step-3); line-height: .95; letter-spacing: -.05em; font-weight: 700; max-width: 14ch; }
+.contact p { color: var(--dim); max-width: 44ch; margin-top: 1.4rem; font-size: var(--step-1); line-height: 1.45; }
+
+.links { margin-top: 3rem; display: grid; gap: 0; border-top: 1px solid var(--line); max-width: 760px; }
+.links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem .4rem;
+  border-bottom: 1px solid var(--line);
+  transition: padding-left .4s var(--ease), color .3s;
+}
+.links a:hover { padding-left: 1.2rem; color: var(--accent); }
+.links a span:last-child { color: var(--dim); font-family: 'JetBrains Mono', monospace; font-size: var(--step--1); }
+.links a:hover span:last-child { color: inherit; }
+
+.colophon { padding: 2rem var(--gutter) 3rem; color: var(--dim); display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; }
+
+/* ═══════════════════════════════════════════════════════════════
+   14. CURSOR HALO (pointer devices only)
+   ═══════════════════════════════════════════════════════════════ */
+.halo {
+  position: fixed;
+  top: 0; left: 0;
+  width: 380px; height: 380px;
+  margin: -190px 0 0 -190px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, color-mix(in oklab, var(--accent) 16%, transparent), transparent 62%);
+  opacity: 0;
+  transition: opacity .6s;
+  will-change: transform;
+}
+@media (hover: hover) and (pointer: fine) {
+  body.ready .halo { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   15. REVEAL ON SCROLL
+   ═══════════════════════════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(18px); }
+body.ready .reveal { transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ═══════════════════════════════════════════════════════════════
+   16. RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 980px) {
+  .shell { grid-template-columns: 1fr; }
+  .rail {
+    position: sticky; top: 0; height: auto;
+    flex-direction: row; align-items: center; justify-content: space-between;
+    padding: .85rem var(--gutter);
+    border-right: 0; border-bottom: 1px solid var(--line);
+    background: color-mix(in oklab, var(--ink) 82%, transparent);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  }
+  .rail__role, .rail__foot { display: none; }
+  .nav { flex-direction: row; gap: 1.1rem; margin-right: 0; overflow-x: auto; scrollbar-width: none; }
+  .nav a { padding: 0; font-size: var(--step--1); }
+  .nav a::before { display: none; }
+  .hero { min-height: 88dvh; padding-top: 12vh; }
+  .about { grid-template-columns: 1fr; }
+  .project { grid-template-columns: 1fr; }
+  .project__side { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+}
+@media (max-width: 560px) {
+  .head { flex-wrap: wrap; }
+  .head .mono { margin-left: 0; width: 100%; }
+  .project__side { flex-direction: column; align-items: flex-start; }
+  .msg { max-width: 100%; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   17. MOTION PREFERENCES
+   ═══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  #net { display: none; }
+  .halo { display: none; }
+}
+</style>
 </head>
 
 <body>
+<div class="halo" aria-hidden="true"></div>
 
-    <!-- NAVIGATION -->
+<div class="shell">
 
-    <nav>
-        <div class="nav-container">
+  <!-- ── rail ─────────────────────────────────────────────── -->
+  <header class="rail">
+    <div>
+      <a href="#top" class="rail__mark">
+        <span class="rail__dot" aria-hidden="true"></span>
+        Abhinand&nbsp;B
+      </a>
+      <p class="rail__role mono">Full-stack developer · Idukki, Kerala</p>
+    </div>
 
-            <div class="logo">
-                Abhinand<span>.</span>
-            </div>
-
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-
-        </div>
+    <nav class="nav mono" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#stack">Stack</a>
+      <a href="#work">Work</a>
+      <a href="#path">Path</a>
+      <a href="#ask">Ask</a>
+      <a href="#contact">Contact</a>
     </nav>
 
-
-    <!-- HERO -->
-
-    <section class="hero" id="home">
-
-        <div class="hero-content">
-
-            <div>
-
-                <div class="small-text">
-                    Hello, I'm
-                </div>
-
-                <h1>
-                    Abhinand <span>B</span>
-                </h1>
-
-                <h2>
-                    MERN Stack Developer
-                </h2>
-
-                <p>
-                    BCA graduate and aspiring MERN Stack Developer, currently
-                    developing practical skills in MongoDB, Express.js, React.js
-                    and Node.js. Familiar with frontend and backend development,
-                    database concepts, RESTful APIs, and Git/GitHub — eager to
-                    build responsive, scalable and user-focused web applications.
-                </p>
-
-                <div class="buttons">
-
-                    <a href="#projects" class="btn primary">
-                        View My Work
-                    </a>
-
-                    <a href="#contact" class="btn secondary">
-                        Contact Me
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="profile-card">
-
-                <div class="profile-circle">
-                    AB
-                </div>
-
-                <h3>Abhinand B</h3>
-
-                <p>
-                    BCA • 2023 - 2026
-                </p>
-
-                <p style="margin-top:10px;">
-                    Thodupuzha, Idukki, Kerala
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ABOUT -->
-
-    <section id="about">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <h2>About <span>Me</span></h2>
-
-                <p>Get to know me</p>
-
-            </div>
-
-
-            <div class="about-grid">
-
-                <div class="card">
-
-                    <h3>Who I Am</h3>
-
-                    <p>
-                        I'm a BCA graduate with a strong foundation in
-                        programming, web technologies and database concepts.
-                        I'm building hands-on experience across the MERN
-                        stack — MongoDB, Express.js, React.js and Node.js —
-                        alongside modern JavaScript and RESTful APIs, and I
-                        enjoy solving problems with clear, logical thinking.
-                    </p>
-
-                </div>
-
-
-                <div class="card">
-
-                    <h3>Career Goal</h3>
-
-                    <p>
-                        I'm looking to apply my MERN stack skills to build
-                        responsive, scalable and user-focused web
-                        applications as part of a professional team, while
-                        continuing to grow as a full-stack developer through
-                        real-world projects and mentorship.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- SKILLS -->
-
-    <section id="skills">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <h2>My <span>Skills</span></h2>
-
-                <p>Technologies and abilities</p>
-
-            </div>
-
-            <div class="skill-group">
-                <h4>MERN Stack</h4>
-                <div class="skills">
-                    <div class="skill">MongoDB</div>
-                    <div class="skill">Express.js</div>
-                    <div class="skill">React.js</div>
-                    <div class="skill">Node.js</div>
-                </div>
-            </div>
-
-            <div class="skill-group">
-                <h4>Programming & Web</h4>
-                <div class="skills">
-                    <div class="skill">JavaScript</div>
-                    <div class="skill">Java</div>
-                    <div class="skill">C</div>
-                    <div class="skill">C++</div>
-                    <div class="skill">HTML5</div>
-                    <div class="skill">ES6</div>
-                </div>
-            </div>
-
-            <div class="skill-group">
-                <h4>Tools & Core Strengths</h4>
-                <div class="skills">
-                    <div class="skill">Git</div>
-                    <div class="skill">GitHub</div>
-                    <div class="skill">Problem Solving</div>
-                    <div class="skill">Logical Thinking</div>
-                    <div class="skill">Communication</div>
-                    <div class="skill">Teamwork</div>
-                    <div class="skill">Quick Learning</div>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- EDUCATION -->
-
-    <section id="education">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <h2>My <span>Education</span></h2>
-
-                <p>Academic background</p>
-
-            </div>
-
-
-            <div class="timeline">
-
-                <div class="timeline-item">
-
-                    <h3>
-                        Bachelor of Computer Applications (BCA)
-                    </h3>
-
-                    <div class="year">
-                        2023 - 2026
-                    </div>
-
-                    <p>
-                        Mar Augusthinose College, Ramapuram
-                    </p>
-
-                    <p>
-                        CGPA: 6.5
-                    </p>
-
-                </div>
-
-                <div class="timeline-item">
-
-                    <h3>
-                        MERN Stack Development
-                    </h3>
-
-                    <div class="year">
-                        2026 · Professional Development Program
-                    </div>
-
-                    <p>
-                        Hands-on training in MongoDB, Express.js, React.js,
-                        Node.js, HTML, CSS, JavaScript, REST API integration,
-                        database management, and Git/GitHub.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PROJECTS -->
-
-    <section id="projects">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <h2>Featured <span>Projects</span></h2>
-
-                <p>Some of my academic work</p>
-
-            </div>
-
-
-            <div class="projects-grid">
-
-                <div class="project-card">
-
-                    <div class="project-top">
-                        💼
-                    </div>
-
-                    <div class="project-content">
-
-                        <h3>
-                            Online Job Portal
-                        </h3>
-
-                        <ul>
-                            <li>Centralized recruitment platform connecting Admin, Job Seekers and Employers</li>
-                            <li>User and company registration with login authentication and role-based access control</li>
-                            <li>Employers post vacancies and manage applications; job seekers search and apply for jobs</li>
-                            <li>Database structures designed with Django ORM and SQLite</li>
-                            <li>Tested registration, login, job posting, application and validation flows</li>
-                        </ul>
-
-                        <div class="tags">
-                            <div class="tag">Python</div>
-                            <div class="tag">Django</div>
-                            <div class="tag">HTML5</div>
-                            <div class="tag">CSS3</div>
-                            <div class="tag">JavaScript</div>
-                            <div class="tag">SQLite</div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="project-card">
-
-                    <div class="project-top">
-                        🚗
-                    </div>
-
-                    <div class="project-content">
-
-                        <h3>
-                            Namma Ghaadi – Car Website
-                        </h3>
-
-                        <ul>
-                            <li>Car-focused website presenting vehicle details, models and specifications</li>
-                            <li>Structured, user-friendly interface built from core web development concepts</li>
-                        </ul>
-
-                        <div class="tags">
-                            <div class="tag">HTML</div>
-                            <div class="tag">CSS</div>
-                            <div class="tag">JavaScript</div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CONTACT -->
-
-    <section id="contact">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <h2>Contact <span>Me</span></h2>
-
-                <p>Let's connect</p>
-
-            </div>
-
-
-            <div class="contact-grid">
-
-                <div class="contact-card">
-
-                    <div class="contact-icon">
-                        📞
-                    </div>
-
-                    <h3>Phone</h3>
-
-                    <a href="tel:+919656235495">
-                        9656235495
-                    </a>
-
-                </div>
-
-
-                <div class="contact-card">
-
-                    <div class="contact-icon">
-                        ✉️
-                    </div>
-
-                    <h3>Email</h3>
-
-                    <a href="mailto:abhinandb914@gmail.com">
-                        abhinandb914@gmail.com
-                    </a>
-
-                </div>
-
-
-                <div class="contact-card">
-
-                    <div class="contact-icon">
-                        🔗
-                    </div>
-
-                    <h3>LinkedIn</h3>
-
-                    <a
-                        href="https://www.linkedin.com/in/abhinand-binu-7b1495387"
-                        target="_blank">
-                        View Profile
-                    </a>
-
-                </div>
-
-                <div class="contact-card">
-
-                    <div class="contact-icon">
-                        💻
-                    </div>
-
-                    <h3>GitHub</h3>
-                    <a
-                    
-                        href="https://github.com/Abhinand-B"
-                        target="_blank">
-                        Abhinand-B
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <p>
-            © 2026 <span>Abhinand B</span>.
-            All Rights Reserved.
+    <div class="rail__foot mono">
+      <a href="https://github.com/Abhinand-B" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/abhinand-binu-7b1495387" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:abhinandb914@gmail.com">Email</a>
+    </div>
+  </header>
+
+  <main class="main" id="top">
+
+    <!-- ── hero ───────────────────────────────────────────── -->
+    <section class="hero">
+<canvas id="net" aria-hidden="true"></canvas>
+
+      <div class="hero__inner">
+        <p class="hero__kicker mono"><span class="hero__pulse" aria-hidden="true"></span> Open to junior developer roles</p>
+
+        <h1>
+          <span class="cycle">Abhinand</span>
+          <span class="cycle d2">B</span>
+        </h1>
+
+        <p class="hero__lede">
+          I build web applications end to end with <b>React, Node, Express and MongoDB</b> — and I am learning to put language models to work inside them.
         </p>
 
+        <div class="hero__actions">
+          <a class="btn btn--solid" href="#work">See the work</a>
+          <a class="btn" href="mailto:abhinandb914@gmail.com">Email me</a>
+        </div>
+      </div>
+
+      <p class="hero__scroll mono"><i aria-hidden="true"></i> Scroll</p>
+    </section>
+
+    <!-- ── about ──────────────────────────────────────────── -->
+    <section class="band" id="about">
+      <div class="head reveal">
+        <h2 class="cycle">About</h2>
+        <p class="mono">01</p>
+      </div>
+
+      <div class="about reveal">
+        <div>
+          <p>I am a BCA student at MG University, finishing in 2026, and I spend most of my free hours writing JavaScript. What started as coursework in C and Java turned into something I actually enjoy the moment I shipped a page that other people could open and use.</p>
+          <p>At <strong>SMEC Technologies</strong> I worked as a full-stack intern: React on the front, Node and Express behind it, REST endpoints joining the two. Before that I built a Django job portal with three separate user roles, which is where I learned that authentication and permissions are most of the work.</p>
+          <p>Right now I am pointing the same curiosity at <strong>AI tooling</strong> — calling model APIs from a Node backend, storing embeddings, and figuring out how retrieval actually behaves once real documents are involved. The chat panel further down is a small, honest step in that direction.</p>
+        </div>
+
+        <dl class="facts">
+          <div class="fact"><dt class="mono">Based in</dt><dd>Idukki, Kerala</dd></div>
+          <div class="fact"><dt class="mono">Degree</dt><dd>BCA, MG University<br><span class="mono" style="color:var(--dim)">2023 – 2026</span></dd></div>
+          <div class="fact"><dt class="mono">Certified</dt><dd>JavaScript Developer</dd></div>
+          <div class="fact"><dt class="mono">Looking for</dt><dd>Junior full-stack / MERN</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ── stack ──────────────────────────────────────────── -->
+    <section class="band" id="stack">
+      <div class="head reveal">
+        <h2 class="cycle d1">Stack</h2>
+        <p class="mono">02</p>
+      </div>
+
+      <div class="stack reveal">
+        <div class="group">
+          <h3>Frontend</h3>
+          <ul><li>React.js</li><li>JavaScript</li><li>HTML5</li><li>CSS3</li><li>Bootstrap</li></ul>
+        </div>
+        <div class="group">
+          <h3>Backend</h3>
+          <ul><li>Node.js</li><li>Express.js</li><li>REST APIs</li><li>PHP</li><li>Django</li></ul>
+        </div>
+        <div class="group">
+          <h3>Data</h3>
+          <ul><li>MongoDB</li><li>MySQL</li><li>SQL</li><li>SQLite</li></ul>
+        </div>
+        <div class="group">
+          <h3>Languages &amp; tools</h3>
+          <ul><li>Java</li><li>C</li><li>C++</li><li>Python</li><li>Git</li><li>GitHub</li><li>VS Code</li></ul>
+        </div>
+        <div class="group" data-learning>
+          <h3>AI, in progress</h3>
+          <ul><li>LLM APIs</li><li>Prompt design</li><li>Embeddings</li><li>Vector search</li><li>RAG</li><li>LangChain</li></ul>
+          <p class="group__note">Dashed means I am still learning it — I would rather say that than overclaim in an interview.</p>
+        </div>
+      </div>
+
+      <div class="marquee reveal" aria-hidden="true">
+        <div class="marquee__track">
+          <span>React</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>REST APIs</span><span>Git</span><span>Python</span><span>Django</span><span>LLM APIs</span><span>Embeddings</span><span>Vector search</span><span>MySQL</span>
+          <span>React</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>REST APIs</span><span>Git</span><span>Python</span><span>Django</span><span>LLM APIs</span><span>Embeddings</span><span>Vector search</span><span>MySQL</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── work ───────────────────────────────────────────── -->
+    <section class="band" id="work">
+      <div class="head reveal">
+        <h2 class="cycle d2">Work</h2>
+        <p class="mono">03</p>
+      </div>
+
+      <div class="work">
+        <article class="project reveal">
+          <div>
+            <h3>Online Job Portal</h3>
+            <p class="project__meta mono">Recruitment platform · three user roles</p>
+            <p>A hiring platform where job seekers, employers and admins each get their own view of the same data. Employers post openings, seekers apply and track status, admins moderate everything above.</p>
+            <ul>
+              <li>Authentication with role-based access control across all three account types</li>
+              <li>Job posting, application and status workflows backed by SQLite</li>
+              <li>Admin tooling for moderating listings and managing users</li>
+            </ul>
+          </div>
+          <div class="project__side">
+            <div class="project__tags"><span>Python</span><span>Django</span><span>SQLite</span></div>
+            <a class="project__link" href="https://github.com/Abhinand-B" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div>
+            <h3>Namma Ghaadi</h3>
+            <p class="project__meta mono">Car catalogue · built without a framework</p>
+            <p>A browsable catalogue of vehicle models with specifications and detail pages, written in plain HTML, CSS and JavaScript so I had to handle state, filtering and DOM updates myself.</p>
+            <ul>
+              <li>Model listings with specifications and per-vehicle detail views</li>
+              <li>Interactive filtering and UI behaviour written in vanilla JavaScript</li>
+              <li>Responsive layout that holds up from phone to desktop</li>
+            </ul>
+          </div>
+          <div class="project__side">
+            <div class="project__tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+            <a class="project__link" href="https://github.com/Abhinand-B" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── path ───────────────────────────────────────────── -->
+    <section class="band" id="path">
+      <div class="head reveal">
+        <h2 class="cycle d3">Path</h2>
+        <p class="mono">04</p>
+      </div>
+
+      <div class="timeline">
+        <article class="entry reveal">
+          <h3>BCA, Computer Applications</h3>
+          <p class="entry__org mono">MG University · 2023 – 2026</p>
+          <ul>
+            <li>Core programming in C, C++ and Java, plus databases and web development</li>
+            <li>Built the job portal and car catalogue as coursework that went past the brief</li>
+          </ul>
+        </article>
+
+        <article class="entry reveal">
+          <h3>Full Stack Development Intern</h3>
+          <p class="entry__org mono">SMEC Technologies</p>
+          <ul>
+            <li>Built and maintained full-stack applications with React, Node and Express</li>
+            <li>Designed REST endpoints and wired them to the frontend</li>
+            <li>Worked across both sides of the codebase rather than one layer</li>
+            <li>Day-to-day Git and GitHub in a team workflow</li>
+          </ul>
+        </article>
+
+        <article class="entry reveal">
+          <h3>JavaScript Developer Certification</h3>
+          <p class="entry__org mono">Certified</p>
+          <ul>
+            <li>Formal grounding in the language I now write every day</li>
+          </ul>
+        </article>
+
+        <article class="entry reveal">
+          <h3>Building with AI models</h3>
+          <p class="entry__org mono">Ongoing</p>
+          <ul>
+            <li>Calling model APIs from Node backends and handling streamed responses</li>
+            <li>Embeddings, vector search and retrieval over my own documents</li>
+            <li>Next up: shipping one AI feature into a real, deployed project</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── ask ────────────────────────────────────────────── -->
+    <section class="band" id="ask">
+      <div class="head reveal">
+        <h2 class="cycle d4">Ask this page</h2>
+        <p class="mono">05</p>
+      </div>
+
+      <div class="ask reveal">
+        <div class="ask__log" id="log" role="log" aria-live="polite">
+          <div class="msg msg--bot">Hi — ask me anything about Abhinand's stack, projects, internship or availability.</div>
+        </div>
+
+        <form class="ask__form" id="askForm" autocomplete="off">
+          <label class="sr-only" for="q">Your question</label>
+          <input id="q" name="q" placeholder="What has he actually built?" />
+          <button type="submit">Ask</button>
+        </form>
+
+        <div class="chips">
+          <button class="chip" data-q="What's your tech stack?">tech stack</button>
+          <button class="chip" data-q="Tell me about the job portal project">job portal</button>
+          <button class="chip" data-q="What did you do in your internship?">internship</button>
+          <button class="chip" data-q="What are you doing with AI?">AI work</button>
+          <button class="chip" data-q="Are you available for hire?">availability</button>
+        </div>
+
+        <p class="ask__note">This runs entirely in your browser — it scores your question against a small set of facts, no model call and no data leaving the page. Swapping the scorer for a real LLM endpoint is one function away.</p>
+      </div>
+    </section>
+
+    <!-- ── contact ────────────────────────────────────────── -->
+    <section class="band contact" id="contact">
+      <h2 class="reveal"><span class="cycle">Let's build</span> <span class="cycle d3">something</span></h2>
+      <p class="reveal">I am finishing my degree in 2026 and looking for a junior full-stack role. Internships, freelance work and interesting problems all welcome.</p>
+
+      <div class="links reveal">
+        <a href="mailto:abhinandb914@gmail.com"><span>abhinandb914@gmail.com</span><span>Email</span></a>
+        <a href="tel:+919656235495"><span>+91 96562 35495</span><span>Phone</span></a>
+        <a href="https://github.com/Abhinand-B" target="_blank" rel="noopener"><span>github.com/Abhinand-B</span><span>Code</span></a>
+        <a href="https://www.linkedin.com/in/abhinand-binu-7b1495387" target="_blank" rel="noopener"><span>linkedin.com/in/abhinand-binu</span><span>Profile</span></a>
+      </div>
+    </section>
+
+    <footer class="colophon mono">
+      <span>© <span id="yr">2026</span> Abhinand B</span>
+      <span>Built by hand · Idukki, Kerala</span>
     </footer>
 
+  </main>
+</div>
 
-    <script>
+<script>
+(function () {
+  'use strict';
 
-        // Simple navbar effect while scrolling
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  requestAnimationFrame(() => document.body.classList.add('ready'));
 
-        window.addEventListener("scroll", function () {
+  /* ───────────── 1. reveal on scroll ───────────── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (Math.min(i, 4) * 60) + 'ms';
+    io.observe(el);
+  });
 
-            const nav = document.querySelector("nav");
+  /* ───────────── 2. active nav link ───────────── */
+  const links = [...document.querySelectorAll('.nav a')];
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      links.forEach((a) => a.setAttribute('aria-current', String(a.getAttribute('href') === '#' + e.target.id)));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('section[id]').forEach((s) => spy.observe(s));
 
-            if (window.scrollY > 50) {
-                nav.style.background = "rgba(11, 15, 25, 0.97)";
-            } else {
-                nav.style.background = "rgba(11, 15, 25, 0.9)";
-            }
+  /* ───────────── 3. cursor halo ───────────── */
+  const halo = document.querySelector('.halo');
+  if (!reduced && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let hx = innerWidth / 2, hy = innerHeight / 2, tx = hx, ty = hy;
+    addEventListener('pointermove', (e) => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+    (function drift() {
+      hx += (tx - hx) * 0.09;
+      hy += (ty - hy) * 0.09;
+      halo.style.transform = `translate3d(${hx}px, ${hy}px, 0)`;
+      requestAnimationFrame(drift);
+    })();
+  }
 
-        });
+  /* ───────────── 4. hero network ─────────────
+     Nodes drift, link up when close, and lean toward the pointer.
+     Hue is derived from the clock so it stays in step with the CSS
+     colour cycle without reading computed styles every frame.        */
+  const cv = document.getElementById('net');
+  if (cv && !reduced) {
+    const ctx = cv.getContext('2d');
+    let w = 0, h = 0, dpr = 1, nodes = [], raf;
+    const pointer = { x: -9999, y: -9999 };
 
-    </script>
+    function size() {
+      const r = cv.getBoundingClientRect();
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      w = r.width; h = r.height;
+      cv.width = w * dpr; cv.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.round(Math.min(96, Math.max(28, (w * h) / 15000)));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.28,
+        vy: (Math.random() - 0.5) * 0.28,
+        r: Math.random() * 1.5 + 0.7
+      }));
+    }
 
+    cv.parentElement.addEventListener('pointermove', (e) => {
+      const r = cv.getBoundingClientRect();
+      pointer.x = e.clientX - r.left;
+      pointer.y = e.clientY - r.top;
+    }, { passive: true });
+    cv.parentElement.addEventListener('pointerleave', () => { pointer.x = pointer.y = -9999; });
+
+    const LINK = 132;
+    const C1 = [122, 70, 255];   /* --c1 */
+    const C2 = [18, 176, 163];   /* --c2 */
+
+    function frame(t) {
+      /* mirrors the CSS blend: a slow eased slide between the two
+         brand colours and back, 30s round trip */
+      const phase = (1 - Math.cos((t / 30000) * Math.PI * 2)) / 2;
+      const col = (a) => `rgba(${Math.round(C1[0] + (C2[0] - C1[0]) * phase)},`
+        + `${Math.round(C1[1] + (C2[1] - C1[1]) * phase)},`
+        + `${Math.round(C1[2] + (C2[2] - C1[2]) * phase)},${a})`;
+      ctx.clearRect(0, 0, w, h);
+
+      for (const n of nodes) {
+        const dx = pointer.x - n.x, dy = pointer.y - n.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 30000 && d2 > 1) {
+          const f = 0.00014;
+          n.vx += dx * f; n.vy += dy * f;
+        }
+        n.vx *= 0.992; n.vy *= 0.992;
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < -20) n.x = w + 20; else if (n.x > w + 20) n.x = -20;
+        if (n.y < -20) n.y = h + 20; else if (n.y > h + 20) n.y = -20;
+      }
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist > LINK) continue;
+          const alpha = (1 - dist / LINK) * 0.34;
+          ctx.strokeStyle = col(alpha);
+          ctx.lineWidth = 0.7;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+
+      for (const n of nodes) {
+        ctx.fillStyle = col(.85);
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      raf = requestAnimationFrame(frame);
+    }
+
+    size();
+    raf = requestAnimationFrame(frame);
+    addEventListener('resize', () => { cancelAnimationFrame(raf); size(); raf = requestAnimationFrame(frame); });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) cancelAnimationFrame(raf);
+      else raf = requestAnimationFrame(frame);
+    });
+  }
+
+  /* ───────────── 5. "Ask this page" ─────────────
+     A tiny retrieval step: tokenise the question, score every fact
+     by keyword overlap, return the best match above a threshold.
+     Replace askLocal() with a fetch to your own API route later —
+     that is the only function that has to change.                   */
+  const FACTS = [
+    { k: 'stack tech technology skills know languages use tools frameworks', a: "Abhinand works across the <b>MERN stack</b> — React on the frontend, Node and Express on the backend, MongoDB for data. He also writes Java, C, C++, Python and PHP, and has worked with MySQL, SQL and SQLite. Tooling is Git, GitHub and VS Code." },
+    { k: 'frontend react ui css html design bootstrap client', a: "On the frontend: <b>React.js</b>, JavaScript, HTML5, CSS3 and Bootstrap. The car catalogue project was built with no framework at all, so the DOM work was hand-written." },
+    { k: 'backend node express api server rest endpoint', a: "Backend work is <b>Node.js and Express</b>, designing REST APIs that the frontend consumes. He has also built a Django backend in Python, and touched PHP." },
+    { k: 'database data mongodb mysql sql sqlite storage', a: "Databases: <b>MongoDB</b> for MERN projects, plus MySQL, SQL and SQLite. The job portal ran on SQLite through Django's ORM." },
+    { k: 'job portal recruitment project hiring employer seeker admin roles', a: "The <b>Online Job Portal</b> is a Django and SQLite recruitment platform with three roles — job seekers, employers and admins. It handles authentication, role-based access, job posting, applications and admin moderation." },
+    { k: 'namma ghaadi car vehicle catalogue website project', a: "<b>Namma Ghaadi</b> is a car catalogue site in plain HTML, CSS and JavaScript — vehicle models, specifications, detail views and interactive filtering, all written without a framework." },
+    { k: 'project projects built work portfolio made', a: "Two main projects so far: the <b>Online Job Portal</b> (Django, SQLite, three user roles) and <b>Namma Ghaadi</b> (a vanilla JavaScript car catalogue). Both are on GitHub at github.com/Abhinand-B." },
+    { k: 'internship intern experience smec job work company', a: "He interned as a <b>Full Stack Development Intern at SMEC Technologies</b> — building and maintaining apps with React, Node and Express, designing REST APIs, working across both frontend and backend, and using Git and GitHub daily." },
+    { k: 'ai ml llm model machine learning artificial intelligence gpt rag embedding vector', a: "This is the area he is actively learning: <b>calling LLM APIs from Node backends</b>, prompt design, embeddings, vector search and retrieval-augmented generation. He marks it as in-progress rather than claiming it as production experience — this chat panel is deliberately a local keyword matcher, not a model call." },
+    { k: 'education degree college university bca study student graduate', a: "<b>BCA at MG University</b>, 2023 to 2026. He also holds a JavaScript Developer Certification." },
+    { k: 'certification certificate certified javascript credential', a: "He holds a <b>JavaScript Developer Certification</b>." },
+    { k: 'hire hiring available availability job role opportunity freelance work looking', a: "Yes — he is looking for a <b>junior full-stack or MERN role</b>, finishing his degree in 2026. Internships and freelance projects are welcome too. Email abhinandb914@gmail.com." },
+    { k: 'contact email phone reach linkedin github message call', a: "Email <b>abhinandb914@gmail.com</b>, phone +91 96562 35495, GitHub github.com/Abhinand-B, LinkedIn linkedin.com/in/abhinand-binu-7b1495387." },
+    { k: 'where location based live city kerala idukki india relocate', a: "He is based in <b>Idukki, Kerala</b>, and open to relocating or working remotely." },
+    { k: 'who you about yourself introduce tell', a: "Abhinand B is a BCA student at MG University and a <b>full-stack developer</b> working in the MERN stack, with an internship at SMEC Technologies behind him and an ongoing focus on building with AI models." }
+  ];
+
+  const STOP = new Set(['what','whats','is','are','the','a','an','you','your','do','does','did','of','in','on','for','to','and','with','can','tell','me','about','have','has','he','his','i','it','any','some','how','who','was','were','their','there','be','been','like','give','show']);
+
+  function askLocal(q) {
+    const words = q.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter((w) => w.length > 1 && !STOP.has(w));
+    if (!words.length) return null;
+
+    let best = null, bestScore = 0;
+    for (const f of FACTS) {
+      const keys = f.k.split(' ');
+      let score = 0;
+      for (const w of words) {
+        for (const k of keys) {
+          if (k === w) score += 2;
+          else if (w.length > 3 && (k.startsWith(w) || w.startsWith(k))) score += 1;
+        }
+      }
+      if (score > bestScore) { bestScore = score; best = f; }
+    }
+    return bestScore >= 2 ? best.a : null;
+  }
+
+  const log = document.getElementById('log');
+  const form = document.getElementById('askForm');
+  const input = document.getElementById('q');
+
+  function push(text, who) {
+    const el = document.createElement('div');
+    el.className = 'msg msg--' + who;
+    el.innerHTML = text;
+    log.appendChild(el);
+    log.scrollTop = log.scrollHeight;
+    return el;
+  }
+
+  function ask(q) {
+    push(q.replace(/</g, '&lt;'), 'me');
+    const thinking = push('<span style="color:var(--dim)">Looking…</span>', 'bot');
+    setTimeout(() => {
+      const hit = askLocal(q);
+      thinking.innerHTML = hit || "I don't have that one on file. Try asking about his <b>stack</b>, a <b>project</b>, the <b>internship</b>, his <b>AI work</b>, or how to <b>get in touch</b>.";
+      log.scrollTop = log.scrollHeight;
+    }, 320);
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const q = input.value.trim();
+    if (!q) return;
+    input.value = '';
+    ask(q);
+  });
+
+  document.querySelectorAll('.chip').forEach((c) => c.addEventListener('click', () => ask(c.dataset.q)));
+
+  /* ───────────── 6. smooth in-page scrolling ───────────── */
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+      history.replaceState(null, '', a.getAttribute('href'));
+    });
+  });
+})();
+</script>
 </body>
 </html>
