@@ -403,8 +403,8 @@ section[id] { scroll-margin-top: 2rem; }
 /* ═══════════════════════════════════════════════════════════════
    9. STACK — grid of capability groups + running marquee
    ═══════════════════════════════════════════════════════════════ */
-.stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-.group { background: var(--ink-soft); padding: 1.6rem 1.5rem 1.8rem; transition: background .4s var(--ease); }
+.stack { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.group { flex: 1 1 230px; background: var(--ink-soft); padding: 1.6rem 1.5rem 1.8rem; transition: background .4s var(--ease); }
 .group:hover { background: var(--panel); }
 .group h3 { font-size: var(--step-0); font-weight: 600; margin-bottom: 1rem; letter-spacing: -.02em; }
 .group ul { list-style: none; display: flex; flex-wrap: wrap; gap: .45rem; }
