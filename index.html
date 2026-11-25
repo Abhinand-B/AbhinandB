@@ -42,17 +42,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 section { position: relative; padding: clamp(70px, 11vw, 130px) 0; }
 
 /* ───────── background: nebula + glowing stars ───────── */
-.nebula { position: fixed; inset: 0; z-index: -3; overflow: hidden; background: radial-gradient(120% 80% at 50% 0%, #07163A 0%, var(--bg) 60%); }
-.nebula i { position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(110px); opacity: .3; animation: float 30s ease-in-out infinite alternate; }
+.nebula { position: fixed; inset: 0; z-index: -3; overflow: hidden; background: radial-gradient(120% 80% at 50% 0%, #050B1C 0%, var(--bg) 65%); }
+.nebula i { position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(120px); opacity: .09; animation: float 30s ease-in-out infinite alternate; }
 .nebula i:nth-child(1) { background: var(--blue); top: -25vmax; left: -18vmax; }
-.nebula i:nth-child(2) { background: var(--green); bottom: -30vmax; right: -18vmax; opacity: .2; animation-duration: 36s; animation-delay: -9s; }
-.nebula i:nth-child(3) { background: #1243C9; top: 40%; left: 45%; width: 40vmax; height: 40vmax; opacity: .22; animation-duration: 42s; animation-delay: -15s; }
+.nebula i:nth-child(2) { background: var(--green); bottom: -30vmax; right: -18vmax; opacity: .06; animation-duration: 36s; animation-delay: -9s; }
+.nebula i:nth-child(3) { background: #1243C9; top: 40%; left: 45%; width: 40vmax; height: 40vmax; opacity: .07; animation-duration: 42s; animation-delay: -15s; }
 @keyframes float { 0% { transform: translate(0,0) scale(1); } 50% { transform: translate(8vmax,6vmax) scale(1.18); } 100% { transform: translate(-6vmax,10vmax) scale(.92); } }
 #stars { position: fixed; inset: 0; z-index: -2; width: 100%; height: 100%; pointer-events: none; }
 .vignette { position: fixed; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55)); }
 .grain { position: fixed; inset: -50%; z-index: 90; pointer-events: none; opacity: .05; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); animation: grain 1s steps(6) infinite; }
 @keyframes grain { 0% { transform: translate(0,0); } 20% { transform: translate(-3%,2%); } 40% { transform: translate(2%,-3%); } 60% { transform: translate(-2%,-1%); } 80% { transform: translate(3%,3%); } 100% { transform: translate(0,0); } }
-.spot { position: fixed; top: 0; left: 0; width: 520px; height: 520px; margin: -260px 0 0 -260px; border-radius: 50%; pointer-events: none; z-index: 0; background: radial-gradient(circle, rgba(47,123,255,.16), rgba(30,234,143,.07) 45%, transparent 70%); will-change: transform; }
+.spot { position: fixed; top: 0; left: 0; width: 520px; height: 520px; margin: -260px 0 0 -260px; border-radius: 50%; pointer-events: none; z-index: 0; background: radial-gradient(circle, rgba(47,123,255,.07), rgba(30,234,143,.03) 45%, transparent 70%); will-change: transform; }
 .progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 100; background: var(--grad); transform-origin: left; transform: scaleX(0); box-shadow: 0 0 14px var(--green); }
 
 /* ───────── type helpers ───────── */
@@ -497,15 +497,15 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     var d = Math.min(devicePixelRatio || 1, 2);
     w = innerWidth; h = innerHeight;
     cv.width = w * d; cv.height = h * d; ctx.setTransform(d, 0, 0, d, 0, 0);
-    var n = Math.min(w < 700 ? 110 : 260, Math.round(w * h / 5200));
+    var n = Math.min(w < 700 ? 120 : 300, Math.round(w * h / 4200));
     stars = Array.from({ length: n }, function () {
       var z = Math.random();                      // depth: 0 far, 1 near
       return {
         x: Math.random() * w, y: Math.random() * h, z: z,
-        size: 4 + z * 14 + (Math.random() < .06 ? 14 : 0),
+        size: 1.6 + z * 3.2,
         sp: .12 + z * .5, tone: Math.floor(Math.random() * sprites.length),
         ph: Math.random() * 6.28, tw: .5 + Math.random() * 1.8,
-        flare: Math.random() < .07
+        flare: false
       };
     });
   }
@@ -516,9 +516,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     for (var i = 0; i < stars.length; i++) {
       var s = stars[i];
       var a = .55 + .45 * Math.sin(t / 1000 * s.tw + s.ph);
-      var x = s.x + px * s.z * 26, y = s.y + py * s.z * 26;
+      var x = s.x + px * s.z * 12, y = s.y + py * s.z * 12;
       var sz = s.size * (.85 + a * .25);
-      ctx.globalAlpha = Math.min(1, a * (.45 + s.z * .7));
+      ctx.globalAlpha = Math.min(1, a * (.25 + s.z * .45));
       ctx.drawImage(sprites[s.tone], x - sz, y - sz, sz * 2, sz * 2);
       if (s.flare) {                              /* cross-shaped sparkle on the brightest */
         var L = sz * 2.4;
@@ -535,7 +535,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       var gr = ctx.createLinearGradient(m.x, m.y, m.x - m.vx * 14, m.y - m.vy * 14);
       gr.addColorStop(0, 'rgba(' + m.c + ',' + f + ')');
       gr.addColorStop(1, 'rgba(' + m.c + ',0)');
-      ctx.globalAlpha = 1; ctx.strokeStyle = gr; ctx.lineWidth = 2;
+      ctx.globalAlpha = 1; ctx.strokeStyle = gr; ctx.lineWidth = 1.4;
       ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(m.x - m.vx * 14, m.y - m.vy * 14); ctx.stroke();
       if (m.life <= 0) shooters.splice(k, 1);
     }
@@ -550,10 +550,10 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     (function loop(t) {
       px += (tpx - px) * .05; py += (tpy - py) * .05;
       for (var i = 0; i < stars.length; i++) {
-        var s = stars[i]; s.y -= s.sp * .18;
+        var s = stars[i]; s.y -= s.sp * .08;
         if (s.y < -20) { s.y = h + 20; s.x = Math.random() * w; }
       }
-      if (t - lastShot > 3800 && Math.random() < .02) {
+      if (t - lastShot > 2600 && Math.random() < .03) {
         lastShot = t;
         var sp = 9 + Math.random() * 6, ang = .5 + Math.random() * .4;
         shooters.push({ x: Math.random() * w * .8, y: Math.random() * h * .4, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp, life: 55, max: 55, c: Math.random() < .5 ? '180,225,255' : '140,255,200' });
